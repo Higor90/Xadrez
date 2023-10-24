@@ -1,6 +1,6 @@
 package boardgame;
 
-public class Position<Strint> {
+public class Position {
 
 	private int row;
 	private int column;

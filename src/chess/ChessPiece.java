@@ -17,5 +17,4 @@ public class ChessPiece extends Piece{
 	}
 
 	
-
 }
