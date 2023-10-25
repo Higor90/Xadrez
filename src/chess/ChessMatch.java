@@ -8,14 +8,14 @@ import chess.pieces.king;
 
 public class ChessMatch {
 
-	private Board board;
+	private static Board board;
 
 	public ChessMatch() {
 		board = new Board(8, 8);
 		InitialSetup();
 	}
 
-	public ChessPiece[][] getPieces() {
+	public static ChessPiece[][] getPieces() {
 		ChessPiece[][] mat = new ChessPiece[board.getRows()][board.getColumns()];
 		for (int i = 0; i < board.getRows(); i++) {
 			for (int j = 0; j < board.getColumns(); j++) {
@@ -23,6 +23,12 @@ public class ChessMatch {
 			}
 		}
 		return mat;
+	}
+	
+	public static boolean[][] possibleMoves(ChessPosition sourcePosition){
+		Position position = sourcePosition.toPosition() ;
+		validateSourcePosition(position);
+		return board.piece(position).possibleMoves();			
 	}
 	
 	public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition targetPosition) {
@@ -42,7 +48,7 @@ public class ChessMatch {
 	}
 	
 
-	private void validateSourcePosition(Position position) {
+	private static void validateSourcePosition(Position position) {
 		if(!board.thereIsAPiece(position)) {
 			throw new ChessException("Não existe peça na posição de origem.");
 		}
