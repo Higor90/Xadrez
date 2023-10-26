@@ -42,7 +42,7 @@ public class UI {
 		try {
 		String s = sc.nextLine();
 		char column = s.charAt(0);
-		//esse parseInt pode estar errado.
+		
 		int row = Integer.parseInt(s.substring(1));
 		return new ChessPosition(column, row);
 		}
@@ -57,9 +57,15 @@ public class UI {
 		printCapturedPieces(captured);
 		System.out.println();
 		System.out.println("Turn :" + chessMatch.getTurn());
-		System.out.println("Esperando o jogador :" +chessMatch.getCurrentPlayer());
-		if(chessMatch.getCheck()) {
-			System.out.println("XEQUE!");
+		if(!chessMatch.getcheckMate()) {
+			System.out.println("Esperando o jogador :" + chessMatch.getCurrentPlayer());
+			if(chessMatch.getCheck()) {
+				System.out.println("CHECK!");
+			}
+		}
+		else {
+			System.out.println("CHECKMATE!");
+			System.out.println("WINNER: " + chessMatch.getCurrentPlayer());
 		}
 	}
 	
